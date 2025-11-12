@@ -34,7 +34,7 @@ h2 {
 Looks for these in the code below: --linear-spring, and --linear-bounce */
 :root {
   /* Defines a spring like motion with linear() */
-  /* TODO: Look for this name below --linear-spring. 
+  /* ✅: Look for this name below --linear-spring, used in examples 3 and 12.  
   
   Here linear() interpolates 
   between two values over a percent of the animation duration. */
@@ -51,7 +51,7 @@ Looks for these in the code below: --linear-spring, and --linear-bounce */
   );
 
   /* Defines a bounce like motion with linear() */
-  /* Look for this name below --linear-bounce. Here we have a 
+  /* ✅: Look for this name below --linear-bounce, used in examples 3 and 11. Here we have a 
   series of cubic bezier functions. */
   --linear-bounce: linear(
     /* Start to 1st bounce */
@@ -81,10 +81,12 @@ Looks for these in the code below: --linear-spring, and --linear-bounce */
   width: 100px;
   height: 100px;
   background-color: #f00;
+  border-radius: 0px;       
+  opacity: 1;  
   /* Sets the time to apply changes to this element. TODO: change the 
   time, make it larger then smaller, test the effect in the browser. 
-  (s = secs ms = milliseconds) */
-  transition: 1000ms;
+  (s = secs ms = milliseconds) 2000ms = 2 seconds and was much slower than the default 1000ms and 500 is faster*/
+  transition: 500ms;
   /* All of the properties of this element will be "transitioned". 
   TODO: Add some more properties here to be transitioned, for example, 
   border-radius, border-width, border-color, opacity, width, height 
@@ -99,8 +101,10 @@ Looks for these in the code below: --linear-spring, and --linear-bounce */
     TODO: change the values here and test the effect in the browser. */
     rotate: 12deg;
     scale: 1.25;
+    border-radius: 50%;      /* makes it circular */
+    opacity: 0.5;             /* makes it transparent */
 
-    /* TODO: Set new value for the extra properties you added above. 
+    /* ✅ Set new value for the extra properties you added above. 
     Test your work and watch them change. */
   }
 }
@@ -114,13 +118,22 @@ Looks for these in the code below: --linear-spring, and --linear-bounce */
   height: 100px;
   background-color: #f00;
   transition: 1000ms;
-  /* Control the easing curve of the motion with a timing function */
+  border-radius: 0px;           
+  opacity: 1;                   
+  border: 5px solid black;  
+  /* Control the easing curve of the motion with a timing function
+    the easing is how fast the transition is */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function 
-  TODO: try the default easing keywords here: ease, ease-in, ease-out, 
+  ✅ : try the default easing keywords here: ease, ease-in, ease-out, 
   ease-in-out. Look for the effect in the browser.
   TODO: Follow this link: https://matthewlein.com/tools/ceaser 
   Create a custom timing function and try it here. */
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); */
+  /* transition-timing-function: ease; */
+  /* transition-timing-function: linear; */
+  /* transition-timing-function: ease-in; */
+  transition-timing-function: ease-out;
+  /* transition-timing-function: ease-in-out; */
 
   /* TODO: Add some new properties here. Some will be transitioned, 
   others will not. */
@@ -133,7 +146,7 @@ Looks for these in the code below: --linear-spring, and --linear-bounce */
     rotate: 12deg;
     scale: 1.25;
 
-    /* TODO: Assign new vlaues to all the properties you added above.
+    /* TODO: Assign new values to all the properties you added above.
     Test your work. Only the properties that are listed in 
     transition-properties should change smoothly. */
   }
