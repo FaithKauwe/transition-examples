@@ -199,8 +199,87 @@
     /* ================================ */
     /* Challenge 3: Fancy Checkbox      */
     /* ================================ */
+    /* - **Fancy checkbox**, color is gray. When clicked, the color changes to black, 
+    and the box is filled with green, and the check mark flies up from below into the box. */
+    /* No additional divs needed for this. reasons you would want to add divs to the html: If you need JavaScript to interact with them
+If you need more than 2 extra elements (you only get ::before and ::after)
+If the element needs to be in the accessibility tree for screen readers */
     .fancy-checkbox {
-      /* TODO: Add your fancy checkbox styles here */
+      /* Style the label element (which is the container for the checkbox too */
+      display: inline-block;
+      position: relative;
+      padding-left: 3rem;  /* Make room for the pseudo elementcheckbox */
+      line-height: 2rem;   /* Match checkbox height */
+      color: gray;
+      cursor: pointer;
+      
+      /* Smooth transition for text color from gray to black */
+      transition: color 400ms;
+    }
+
+    /* Hide the native checkbox input type bc natice checkboxes are hard to style and look different across browsers
+    the pseudo element will be used to replace the visual of the checkbox */
+    .fancy-checkbox input {
+      display: none;
+    }
+
+    /* Create the pseudo elementcheckbox box using ::before */
+    .fancy-checkbox::before {
+        /* content is required for pseudo elements so set this content as an empty string to get around the requirement without having to display text*/
+        content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      /* create the checkbox by making an invisible box and then outling it so just the outline is visible */
+      width: calc(2rem - 6px);   /* Account for border width */
+      height: calc(2rem - 6px);
+      border: 3px solid gray;
+      border-radius: 0.25rem;
+      background-color: white;
+      
+      /* Smooth transition for background color */
+      transition: background-color 400ms;
+    }
+
+    /* Create the checkmark pseudo elementusing ::after */
+    .fancy-checkbox::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0.5rem;
+      top: 3rem;  /* Start below the box (off screen) to make the checkmark appear to come up from the bottom */
+      
+      /* create the check mark the same way, create an invisible box, rotate it at an angle and then outline only the edges you want to show, making the checkmark shape visible */
+      width: 0.6rem;
+      height: 1rem;
+      
+    
+      border-right: 3px solid white;
+      border-bottom: 3px solid white;
+      border-radius: 0 0 0.2rem 0;
+      
+      
+      rotate: 45deg;
+      
+      /* Smooth transition with a bounce effect, the negative value makes it overshoot slightly, creating the bounce/spring effect */
+      transition: top 400ms;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* When checkbox is checked - fill with green */
+    .fancy-checkbox:has(input:checked)::before {
+      background-color: limegreen;
+    }
+
+    /* When checkbox is checked - checkmark moves up from 3rem to 0.3rem to end inside the box */
+    .fancy-checkbox:has(input:checked)::after {
+      top: 0.3rem;  /* end Position inside the box */
+    }
+
+    /* When checkbox is checked - text turns black */
+    .fancy-checkbox:has(input:checked) {
+      color: black;
     }
 
   </style>
