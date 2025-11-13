@@ -26,8 +26,11 @@
     /* ================================ */
     /* Challenge 1: Badge Button        */
     /* ================================ */
+    /* - **Badge Button**, on hover the background changes color (dark blue), 
+    and the badge appears in the upper right. On active (mouse down) the background changes color (red)
+     and the badge disappears. You should be able to do this with only the `<button>` element. */
+    
     .badge-button {
-      /* Button basic styling */
       padding: 1rem 2rem;
       font-size: 1rem;
       background-color: dodgerblue;
@@ -53,11 +56,12 @@
       background-color: #f44336; /* red */
     }
 
-    /* Create the badge using ::before pseudo-element */
+    /* Create the badge using ::before pseudo-element, which are "fake" elemnts that don't exist in the DOM
+    they must ahve a content property, used for small decorative flourishes that we don't want to clutter the html with*/
     .badge-button::before {
       content: "$.99";
       
-      /* Style the badge */
+      /* badge styling */
       background-color: tomato;
       color: white;
       padding: 0.25rem 0.5rem;
@@ -65,15 +69,18 @@
       font-size: 0.75rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
       
-      /* Position in upper right */
+      /* looks for the closest parent element with a realtive positioning, which is the badge-button in this case */
       position: absolute;
       top: -8px;
       right: -8px;
       
-      /* Start hidden - scale of 0 means it's invisible */
+      /* Start hidden. scale of 0 == invisible */
       scale: 0;
       
-      /* Smooth transition for scale and rotate */
+      /* comma separate multiple transitions */
+      /* 300ms is the time I am assigning for the transition from scale = 0 to scale =1 */
+      /* 300ms is being assigned as the time for the transition from rotate = 0 (default, not explicityly stated) to rotate = 12deg */
+
       transition: scale 300ms, rotate 300ms;
     }
 
@@ -83,7 +90,7 @@
       rotate: 12deg;
     }
 
-    /* Hide badge when button is clicked (active state) */
+    /* Hide badge when button is clicked (active state) the bahavior of background changing to red and badge disappearing only lasts as long as th emouse click is being held */
     .badge-button:active::before {
       scale: 0;
     }
@@ -110,7 +117,7 @@
   
   <div class="challenge">
     <h2>Challenge 1: Badge Button</h2>
-    <p>Hover to see badge appear. Click to see it disappear.</p>
+    <p>Hover to see badge appear. Move away to see it disappear.</p>
     <button class="badge-button">Order</button>
   </div>
 
