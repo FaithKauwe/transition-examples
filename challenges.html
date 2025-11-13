@@ -99,8 +99,100 @@
     /* ================================ */
     /* Challenge 2: Hamburger Button    */
     /* ================================ */
+    /* - **Hamburger button**, looks like a hamburger with two buns. On hover the buns fly away, and the burger fills the center of the box. 
+    To solve this you will most likely need three elements: top bun, burger, and bottom bun. */
+    
     .hamburger-button {
-      /* TODO: Add your hamburger button styles here */
+      /* Button container styling */
+      width: 100px;
+      height: 100px;
+      border: 3px solid black;
+      border-radius: 0.5rem;
+      background-color: white;
+      cursor: pointer;
+      
+      /* Position relative so children can be positioned absolute */
+      position: relative;
+      /* Hide any parts that move outside the button */
+      overflow: hidden;
+    }
+
+    /* Style all three divs with common properties */
+    .hamburger-button > div {
+      position: absolute;
+      width: 70%;          /* 70% of button width */
+      left: 15%;           /* Center horizontally (15% margin on each side) */
+      
+      /* Add smooth transitions */
+      transition: top 400ms, height 400ms, border-radius 400ms;
+    }
+
+    /* all buns and burger patty are just rectangles with different % of border radius to eound the corners */
+    .top-bun {
+      height: 20%;
+      top: 15%; /*postion this element 15% down from the top edge of the button container */
+      background-color: burlywood;
+      /* Round the top corners, flat bottom */
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    /* Lettuce - green, sits above the patty */
+    .lettuce {
+      height: 8%;
+      top: 35%;
+      background-color: limegreen;
+      /* Rounded all corners for wavy lettuce look */
+      border-radius: 0.5rem;
+    }
+
+    /* Tomato - red, sits on the patty */
+    .tomato {
+      height: 8%;
+      top: 45%;
+      background-color: tomato;
+      /* Rounded all corners */
+      border-radius: 0.5rem;
+    }
+    
+    .patty {
+      height: 15%;
+      top: 55%;
+      background-color: saddlebrown;
+      border-radius: 0.25rem;
+    }
+
+    
+    .bottom-bun {
+      height: 20%;
+      top: 65%;
+      background-color: burlywood;
+      /* Flat top, round bottom corners */
+      border-radius: 0 0 1rem 1rem;
+    }
+
+    /* Hover effects - buns fly away, patty grows into circle */
+    .hamburger-button:hover .top-bun {
+      top: -30%;  /* by changing the position to neg value, it takes it off screen. has to be -30% bc bun size is 20% and 30 ensures the whole bun is hidden off screen */
+    }
+
+    .hamburger-button:hover .patty {
+      height: 70%;        /* Grow much bigger, take up 70% of the avaialble space */
+      top: 15%;           /* Center it */
+      border-radius: 50%; /* Make it circular */
+    }
+
+    .hamburger-button:hover .bottom-bun {
+      top: 130%;  /* repeat the same math as top bun, but we are in the positive numbers now */
+    }
+
+    /* Lettuce flies up with the top bun */
+    .hamburger-button:hover .lettuce {
+      top: -12%;  /* Lettuce is 8% tall, so -12% ensures it's fully hidden */
+    }
+
+    /* Tomato flies down with the bottom bun */
+    .hamburger-button:hover .tomato {
+      top: 112%;  /* Tomato is 8% tall, so 112% ensures it's fully hidden below */
     }
 
 
@@ -125,7 +217,11 @@
     <h2>Challenge 2: Hamburger Button</h2>
     <p>Hover to see the buns fly away.</p>
     <button class="hamburger-button">
-      <!-- We'll need 3 divs for top bun, patty, and bottom bun -->
+      <div class="top-bun"></div>
+      <div class="lettuce"></div>
+      <div class="tomato"></div>
+      <div class="patty"></div>
+      <div class="bottom-bun"></div>
     </button>
   </div>
 
